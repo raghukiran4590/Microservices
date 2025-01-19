@@ -4,9 +4,7 @@ import com.cbrk.hotel.micro.service.entities.Hotel;
 
 import java.util.List;
 
-public interface HotelService {
-
-    //Create New Hotel
+public interface HotelService {    //Create New Hotel
     Hotel saveHotel(Hotel hotel);
 
     //Get all hotels
@@ -14,5 +12,7 @@ public interface HotelService {
 
     //Find Hotel by ID
     Hotel findHotel(String Id);
+
+
 
 }
