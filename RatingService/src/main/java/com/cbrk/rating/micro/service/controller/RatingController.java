@@ -1,7 +1,8 @@
 package com.cbrk.rating.micro.service.controller;
 
-import com.cbrk.rating.micro.service.entities.Rating;
+import com.cbrk.rating.micro.service.entity.Rating;
 import com.cbrk.rating.micro.service.service.RatingService;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,23 +19,24 @@ public class RatingController {
     private RatingService ratingService;
 
     //Create Rating
-    @PostMapping
-    public ResponseEntity<Rating> createRating(@RequestBody Rating rating) {
-        Rating rating1 = ratingService.saveRating(rating);
-        return ResponseEntity.status(HttpStatus.CREATED).body(rating1);
+    @PostMapping("/create-rating")
+    public ResponseEntity<?> createRating(@RequestBody Rating rating) {
+//        return ResponseEntity.status(HttpStatus.CREATED).body(ratingService.saveRating(rating));
+        return new ResponseEntity<>(ratingService.saveRating(rating), HttpStatus.CREATED);
     }
 
     //Get All Ratings
     @GetMapping
-    public ResponseEntity<List<Rating>> getAllRatings() {
-        List<Rating> allRatings = ratingService.getAllRatings();
-        return ResponseEntity.ok(allRatings);
+    public ResponseEntity<?> getAllRatings() {
+        List<Rating> ratingsList;
+        ratingsList = ratingService.getAllRatings();
+        return new ResponseEntity<>(ratingsList, HttpStatus.OK);
     }
 
     //Get Single Rating
-    @GetMapping({"/{ratingId}"})
-    public ResponseEntity<Optional<Rating>> getSingleRating(@PathVariable String ratingId) {
-        Optional<Rating> ratingById = ratingService.getRatingById(ratingId);
+    @GetMapping({"/{Id}"})
+    public ResponseEntity<Optional<Rating>> getSingleRating(@PathVariable ObjectId Id) {
+        Optional<Rating> ratingById = ratingService.getRatingById(Id);
         return ResponseEntity.ok(ratingById);
     }
 

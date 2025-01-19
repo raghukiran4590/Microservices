@@ -1,25 +1,38 @@
 package com.cbrk.rating.micro.service.service;
 
-import com.cbrk.rating.micro.service.entities.Rating;
+import com.cbrk.rating.micro.service.entity.Rating;
+import com.cbrk.rating.micro.service.repository.RatingRepository;
+import org.bson.types.ObjectId;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
-public interface RatingService {
+@Service
+public class RatingService implements Serializable {
 
-    //Create New Rating
-    Rating saveRating(Rating rating);
+    @Autowired
+    private RatingRepository ratingRepository;
 
-    //Get all Ratings
-    List<Rating> getAllRatings();
+    @Transactional
+    public Rating saveRating(Rating rating) { return ratingRepository.save(rating); }
 
-    //Get Ratings by UserID
-    List<Rating> getRatingsByUserId(String userId);
+    public List<Rating> getAllRatings() {
+        return ratingRepository.findAll();
+    }
 
-    //Get Ratings by HotelID
-    List<Rating> getRatingsByHotelId(String hotelId);
+    public List<Rating> getRatingsByUserId(String userId) {
+        return ratingRepository.getRatingsByUserId(userId);
+    }
 
-    //Get Rating by ID
-    Optional<Rating> getRatingById(String ratingId);
+    public List<Rating> getRatingsByHotelId(String hotelId) {
+        return ratingRepository.getRatingsByHotelId(hotelId);
+    }
 
+    public Optional<Rating> getRatingById(ObjectId Id) {
+        return ratingRepository.findById(Id);
+    }
 }

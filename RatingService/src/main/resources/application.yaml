@@ -1,8 +1,32 @@
 server:
   port: 9092
 
+
 spring:
   data:
     mongodb:
       uri: mongodb://localhost:27017
       database: microservices
+      auto-index-creation: true
+    jpa:
+      repositories:
+        enabled: true
+  main:
+    allow-circular-references: true
+
+
+#spring:
+#  data:
+#    mongodb:
+#      uri: mongodb+srv://raghukiran4590:6li4e3mv4Ch4zv3r@cluster0.gehwm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+#      database: microservices
+#      auto-index-creation: true
+#    jpa:
+#      repositories:
+#        enabled:
+#  main:
+#    allow-circular-references: true
+
+#logging:
+#  level:
+#    root: "debug"
