@@ -1,14 +1,16 @@
 package com.cbrk.hotel.micro.service.services.impl;
 
 import com.cbrk.hotel.micro.service.entities.Hotel;
+import com.cbrk.hotel.micro.service.exceptions.ResourceNotFoundException;
 import com.cbrk.hotel.micro.service.repositories.HotelRepository;
 import com.cbrk.hotel.micro.service.services.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
+@Service
 public class HotelServiceImpl implements HotelService {
 
     @Autowired
@@ -27,10 +29,8 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public Optional<Hotel> findHotel(String Id) {
-        return hotelRepository.findById(Id);
-//                .orElseThrow(() ->
-//                new ResourceNotFoundException("User with the given Id is not found "+Id)
-//                );
+    public Hotel findHotel(String Id) {
+        return hotelRepository.findById(Id).orElseThrow(() ->
+                new ResourceNotFoundException("Hotel not found with this ID "+Id));
     }
 }
