@@ -3,6 +3,8 @@ server:
 
 
 spring:
+  application:
+   name: UserService
   datasource:
     url: jdbc:mysql://localhost:3307/microservices
     username: root
@@ -12,4 +14,11 @@ spring:
       ddl-auto: update
     show-sql: true
 
-
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka

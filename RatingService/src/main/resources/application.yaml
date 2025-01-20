@@ -3,6 +3,8 @@ server:
 
 
 spring:
+  application:
+    name: RatingService
   data:
     mongodb:
       uri: mongodb://localhost:27017
@@ -13,6 +15,16 @@ spring:
         enabled: true
   main:
     allow-circular-references: true
+
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
 
 
 #spring:
