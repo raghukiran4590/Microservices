@@ -27,7 +27,7 @@ public class UserController {
     @GetMapping({"/{userId}"})
     public ResponseEntity<User> getSingleUser(@PathVariable String userId) {
         User user = userService.findUser(userId);
-        return ResponseEntity.ok(user);
+        return ResponseEntity.status(HttpStatus.OK).body(user);
     }
 
     //Get All Users
