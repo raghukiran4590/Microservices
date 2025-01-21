@@ -57,6 +57,7 @@ public class UserServiceImpl implements UserService {
 //        URI url = URI.create("http://localhost:9092/ratings/users/6c961abb-a2e7-4aaf-8012-7f9c179e3aa8");
 //        ArrayList body = restClient.get().uri(url).retrieve().body(ArrayList.class);
 //        String url = "http://localhost:9092/ratings/users/{userId}";
+//        Removing Host name and Port Number for Microservices using @LoadBalanced
 //        String url = "http://RATINGSERVICE/ratings/users/6c961abb-a2e7-4aaf-8012-7f9c179e3aa8";
 //        String userId = user1.getUserId();
 //        URI uri = UriComponentsBuilder.fromUriString(url).buildAndExpand(userId).toUri();
