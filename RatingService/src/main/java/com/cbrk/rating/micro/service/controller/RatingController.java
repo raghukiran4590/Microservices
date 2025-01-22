@@ -52,4 +52,10 @@ public class RatingController {
         return new ResponseEntity<>(ratingsByHotelId, HttpStatus.OK);
     }
 
+    //Update Ratings by Id
+    @PutMapping({"/update-rating/{Id}"})
+    public ResponseEntity<?> updateRating(@PathVariable String Id, @RequestBody Rating rating) {
+        return new ResponseEntity<>(ratingService.saveRating(rating), HttpStatus.OK);
+    }
+
 }

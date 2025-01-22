@@ -18,7 +18,9 @@ public class RatingService implements Serializable {
     private RatingRepository ratingRepository;
 
     @Transactional
-    public Rating saveRating(Rating rating) { return ratingRepository.save(rating); }
+    public Rating saveRating(Rating rating) {
+        return ratingRepository.save(rating);
+    }
 
     public List<Rating> getAllRatings() {
         return ratingRepository.findAll();

@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private RatingService ratingService;
 
-    RestClient restClient = RestClient.create();
+//    RestClient restClient = RestClient.create();
 
 //    private Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
@@ -62,10 +62,14 @@ public class UserServiceImpl implements UserService {
         User user1 = userRepository.findById(UserId).orElseThrow(() ->
                 new ResourceNotFoundException("User with the given Id is not found " + UserId));
 
-        List<Rating> ratingsforUser = ratingService.getRatingsforUser(user1.getUserId());
+        ArrayList<Rating> ratingsforUser = ratingService.getRatingsforUser(user1.getUserId());
         log.info("Rating Micro Service Called");
-        log.info("Ratings for User list : {}", ratingsforUser);
-
+        List<Rating> ratingsWithHotels = ratingsforUser.stream().peek(rating -> {
+            Hotel hotelById = hotelService.getHotelById(rating.getHotelId());
+            log.info("Hotel Micro Service Called");
+            rating.setHotel(hotelById);
+        }).toList();
+        user1.setRatings(ratingsWithHotels);
         return  user1;
     }
 }

@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Rating {
 
-    private String ratingId;
+    private Object id;
     private String userId;
     private String hotelId;
     private int rating;
