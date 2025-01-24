@@ -1,0 +1,13 @@
+server:
+  port: 9094
+
+spring:
+  application:
+    name: ConfigServer
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/raghukiran4590/ConfigServer
+          clone-on-start: true
+

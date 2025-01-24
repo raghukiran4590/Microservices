@@ -1,7 +1,6 @@
 server:
   port: 9090
 
-
 spring:
   application:
    name: UserService
@@ -13,12 +12,16 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  config:
+    import: configserver:http://localhost:9094
 
-eureka:
-  instance:
-    prefer-ip-address: true
-  client:
-    fetch-registry: true
-    register-with-eureka: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka
+#spring.config.import.optional.configserver=http://localhost:9094
+
+#eureka:
+#  instance:
+#    prefer-ip-address: true
+#  client:
+#    fetch-registry: true
+#    register-with-eureka: true
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka
