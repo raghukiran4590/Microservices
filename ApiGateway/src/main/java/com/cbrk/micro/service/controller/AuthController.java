@@ -52,4 +52,9 @@ public class AuthController {
 
     }
 
+    @GetMapping("/user-home")
+    public String homePage(@AuthenticationPrincipal OidcUser user) {
+        return "Welcome "+user.getFullName() + "!";
+    }
+
 }

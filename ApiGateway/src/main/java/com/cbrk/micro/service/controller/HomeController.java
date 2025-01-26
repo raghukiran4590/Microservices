@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HomeController {
 
-    @GetMapping("/")
+    @GetMapping("/user-home")
     public String homePage(@AuthenticationPrincipal OidcUser user) {
         return "Welcome "+user.getFullName() + "!";
     }

@@ -20,9 +20,39 @@ spring:
           predicates:
             - Path=/hotels/**, /staffs/**
         - id: RATINGSERVICE
-          uri: lb://RATINGSERVICE
+          uri: lb://RATINGSER
           predicates:
             - Path=/ratings/**
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://dev-78809237.okta.com/oauth2/default
+          audiences:
+            - api://default
+      client:
+        provider:
+          okta:
+#            authorizationUri: https://dev-78809237.okta.com/
+            authorizationUri: https://dev-78809237.okta.com/oauth2/v1/authorize
+            token-uri: https://dev-78809237.okta.com/oauth2/v1/token
+            user-info-uri: https://dev-78809237.okta.com/oauth2/v1/userinfo
+            user-name-attribute: sub
+            jwk-set-uri: https://dev-78809237.okta.com/oauth2/v1/keys
+        registration:
+          okta:
+            client-id: 0oamxukoeo7SnfBWL5d7
+            client-secret: Iw544Hhi4s1a9b1r5wOErIr_f5ZW70cLJNsKHUo0H-sgoBDJmhgpqCGyXgEYY4An
+            redirect-uri: http://localhost:9093/login/oauth2/code/okta
+#            redirectUri: http://localhost:9093/user-home
+            scope:
+              - openid
+              - profile
+              - email
+              - offline_access
+      authorizationserver:
+        endpoint: api://default
+        issuer: https://dev-78809237.okta.com/oauth2/default
 
 
 eureka:
@@ -34,15 +64,4 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka
 
-okta:
-  oauth2:
-    issuer: https://dev-78809237.okta.com/oauth2/default
-    audience: api://default
-    client-id: 0oamxukoeo7SnfBWL5d7
-    client-secret: Iw544Hhi4s1a9b1r5wOErIr_f5ZW70cLJNsKHUo0H-sgoBDJmhgpqCGyXgEYY4An
-    redirect-uri: /authorization-code/callback
-    scopes:
-      - openid
-      - profile
-      - email
-      - offline_access
+

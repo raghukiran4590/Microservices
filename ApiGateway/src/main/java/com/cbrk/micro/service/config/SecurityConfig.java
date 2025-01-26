@@ -21,10 +21,11 @@ public class SecurityConfig {
                 .authorizeExchange(exchanges -> exchanges
 //                        .pathMatchers("/api/**").hasRole("ADMIN")
                         .anyExchange().authenticated()
-                ).oauth2Client(oauth2 -> oauth2
+                ).oauth2Client(Customizer.withDefaults()).build();
+/*                 oauth2Client(oauth2 -> oauth2
                          .clientRegistrationRepository(new InMemoryReactiveClientRegistrationRepository())
                          .authorizedClientRepository(new WebSessionServerOAuth2AuthorizedClientRepository())
                  ).oauth2ResourceServer((oAuth2ResourceServerSpec -> oAuth2ResourceServerSpec
-                         .jwt(Customizer.withDefaults()))).build();
+                         .jwt(Customizer.withDefaults()))).build();*/
     }
 }
