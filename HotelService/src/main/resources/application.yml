@@ -14,6 +14,16 @@ spring:
     show-sql: true
   config:
     import: configserver:http://localhost:9094
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://dev-78809237.okta.com/oauth2/default
+          audiences:
+            - api://default
+
+
+
 
 #eureka:
 #  instance:
@@ -23,3 +33,9 @@ spring:
 #    register-with-eureka: true
 #    service-url:
 #      defaultZone: http://localhost:8761/eureka
+
+
+okta:
+  oauth2:
+    issuer: https://dev-77584981.okta.com/oauth2/default
+    audience: api://default

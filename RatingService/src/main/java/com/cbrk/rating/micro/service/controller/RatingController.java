@@ -6,6 +6,7 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class RatingController {
     private RatingService ratingService;
 
     //Create Rating
+    @PreAuthorize("hasAuthority('Admin')")
     @PostMapping("/create-rating")
     public ResponseEntity<?> createRating(@RequestBody Rating rating) {
 //        return ResponseEntity.status(HttpStatus.CREATED).body(ratingService.saveRating(rating));
@@ -26,6 +28,7 @@ public class RatingController {
     }
 
     //Get All Ratings
+    @PreAuthorize("hasAuthority('SCOPE_internal') || hasAuthority('Admin')")
     @GetMapping
     public ResponseEntity<?> getAllRatings() {
         List<Rating> ratingsList = ratingService.getAllRatings();
@@ -53,6 +56,7 @@ public class RatingController {
     }
 
     //Update Ratings by Id
+    @PreAuthorize("hasAuthority('Admin')")
     @PutMapping({"/update-rating/{Id}"})
     public ResponseEntity<?> updateRating(@PathVariable String Id, @RequestBody Rating rating) {
         return new ResponseEntity<>(ratingService.saveRating(rating), HttpStatus.OK);
