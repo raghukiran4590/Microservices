@@ -37,7 +37,7 @@ public class AuthController {
         //setting email to AuthRepsonse
         authResponse.setUserId(user.getEmail());
 
-        //setting toke to auth response
+        //setting token to auth response
         authResponse.setAccessToken(client.getAccessToken().getTokenValue());
 
         authResponse.setRefreshToken(Objects.requireNonNull(client.getRefreshToken()).getTokenValue());

@@ -7,6 +7,7 @@ import com.cbrk.hotel.micro.service.services.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,6 +23,7 @@ public class HotelServiceImpl implements HotelService {
         hotel.setId(randomUUID);
         return hotelRepository.save(hotel);
     }
+
 
     @Override
     public List<Hotel> getAllHotels() {
